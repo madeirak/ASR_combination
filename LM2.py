@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-@author: nl8590687
-语音识别的语言模型
+相比原先的1-gram，解决超低频词（如声学模型解码失误）的处理问题
 
 基于马尔可夫模型的语言模型
 
@@ -41,40 +40,40 @@ class ModelLanguage():  # 语音模型类
         # 先取出一个字，即拼音列表中第一个pny
         str_tmp = [list_syllable[0]]
 
-        for i in range(0, length - 1 ):
+        for i in range(0, length - 1):
             # 依次从第一个字开始每次连续取两个字拼音
             str_split = list_syllable[i] + ' ' + list_syllable[i + 1]
             # print(str_split,str_tmp,r)
 
             '''1-gram'''
-            if (str_split not in self.pinyin):   # 如果2pny的拼音组不在汉语拼音状态转移字典，直接将现有的拼音序列进行解码
-                ls = self.dict_pinyin[str_tmp[0]]
-
-                r += ls[0]
-                str_split = []
-                continue
-
-            else:# 如果这包含2pny的拼音组在汉语拼音状态转移字典里的话(dic_pinyin.txt)
+            if (str_split in self.pinyin):  # 如果这拼音组在汉语拼音状态转移字典里的话(dic_pinyin.txt)
                 # 将第二个字的拼音加入
                 str_tmp.append(list_syllable[i + 1])
+            else:
+                # 遇到某个低频词，不加入，然后直接将现有的拼音序列进行解码
                 str_decode = self.decode(str_tmp, 0.0000)
-                # print('decode ',str_tmp,str_decode)
-
-               # print('\n'+r+' | '+str_decode[0][0]+'  ')
-               # print('r:'+r[-1:]+'|'+'decode:'+str_decode[0][0][:1])
-                if (str_decode != [] and r[-1:] != str_decode[0][0][:1]):#本次预测的第一个字不等于之前的最后一个字，且不为空
+                # print(str_decode)
+                print('decode ', str_tmp, str_decode)
+                if (str_decode != []):
                     r += str_decode[0][0]
-               # print('new: '+r)
-            # 再重新从i+1开始作为第一个拼音
-            str_tmp = [list_syllable[i + 1]]
+                else:                    #若之前的词组总概率过小全被淘汰，返回空
+                    front = str_tmp[:-1] #一定是最后一个字导致的，分离最后一个字与之前的短语分别译码
+                    ls = self.dict_pinyin[str_tmp[-1]] #最后一个字的译码，直接取字典同音意字字第一个
+                    str_decode = self.decode(str_tmp[:-1], 0.0000)
+                    if (str_decode != []):
+                        r += str_decode[0][0]
+                    r += ls[0]
+
+                # 再重新从i+1开始作为第一个拼音
+                str_tmp = [list_syllable[i + 1]]
 
         # print('最后：', str_tmp)
-        #str_decode = self.decode(str_tmp, 0.0000)
+        str_decode = self.decode(str_tmp, 0.0000)
 
         # print('剩余解码：',str_decode)
 
-        #if (str_decode != []):
-            #r += str_decode[0][0]
+        if (str_decode != []):
+            r += str_decode[0][0]
 
         return r
 
@@ -250,30 +249,29 @@ if (__name__ == '__2main__'):
 
     pinyin = str.split(' ')
 
-    #str_pinyin = ['da4','jia1','hao3','wo3','shi4','zhao4','hao4','ran2']
-    str_pinyin = ['','','']
-    r = ml.SpeechToText(str_pinyin)
+    # str_pinyin = ['da4','jia1','hao3','wo3','shi4','zhao4','hao4','ran2']
+
+    r = ml.SpeechToText(pinyin)
     print('语音转文字结果：\n', r)
 
 if (__name__ == '__main__'):
     ml = ModelLanguage('model_language')
     ml.LoadModel()
 
-        # str_pinyin = ['zhe4','zhen1','shi4','ji2', 'hao3','de5']
-	# str_pinyin = ['jin1', 'tian1', 'shi4', 'xing1', 'qi1', 'san1']
-	# str_pinyin = ['ni3', 'hao3','a1']
-	# str_pinyin = ['wo3','dui4','shi4','mei2','cuo4','ni3','hao3']
+    # str_pinyin = ['zhe4','zhen1','shi4','ji2', 'hao3','de5']
+    # str_pinyin = ['jin1', 'tian1', 'shi4', 'xing1', 'qi1', 'san1']
+    # str_pinyin = ['ni3', 'hao3','a1']
+    # str_pinyin = ['wo3','dui4','shi4','mei2','cuo4','ni3','hao3']
 
-	# str_pinyin = ['da4','jia1','hao3','wo3','shi4','zhao4','hao4','ran2']
+    # str_pinyin = ['da4','jia1','hao3','wo3','shi4','zhao4','hao4','ran2']
 
-	# str_pinyin = ['wo3','dui4','shi4','tian1','mei2','na5','li3','hai4']
-	# str_pinyin = ['ba3','zhe4','xie1','zuo4','wan2','wo3','jiu4','qu4','shui4','jiao4']
-	# str_pinyin = ['wo3','qu4','a4','mei2','shi4','er2','la1']
-	# str_pinyin = ['wo3', 'men5', 'qun2', 'li3', 'xiong1', 'di4', 'jian4', 'mei4', 'dou1', 'zai4', 'shuo1']
-	# str_pinyin = ['su1', 'an1', 'ni3', 'sui4', 'li4', 'yun4', 'sui2', 'cong2', 'jiao4', 'ming2', 'tao2', 'qi3', 'yu2', 'peng2', 'ya4', 'yang4', 'chao1', 'dao3', 'jiang1', 'li3', 'yuan2', 'kang1', 'zhua1', 'zou3']
-	# str_pinyin = ['da4', 'jia1', 'hao3']
-	#str_pinyin = ['kao3', 'yan2', 'yan1', 'yu3', 'ci2', 'hui4']
-	# r = ml.decode(str_pinyin)
-    str_pinyin = ['da4', 'jia1', 'hao3']
-r = ml.SpeechToText(str_pinyin)
-print('语音转文字结果：\n', r)
+    # str_pinyin = ['wo3','dui4','shi4','tian1','mei2','na5','li3','hai4']
+    # str_pinyin = ['ba3','zhe4','xie1','zuo4','wan2','wo3','jiu4','qu4','shui4','jiao4']
+    # str_pinyin = ['wo3','qu4','a4','mei2','shi4','er2','la1']
+    # str_pinyin = ['wo3', 'men5', 'qun2', 'li3', 'xiong1', 'di4', 'jian4', 'mei4', 'dou1', 'zai4', 'shuo1']
+    # str_pinyin = ['su1', 'an1', 'ni3', 'sui4', 'li4', 'yun4', 'sui2', 'cong2', 'jiao4', 'ming2', 'tao2', 'qi3', 'yu2', 'peng2', 'ya4', 'yang4', 'chao1', 'dao3', 'jiang1', 'li3', 'yuan2', 'kang1', 'zhua1', 'zou3']
+    #str_pinyin = ['da4', 'jia1', 'hao3']
+    str_pinyin = ['kao3', 'yan2', 'yan1', 'yu3', 'ci2', 'hui4']
+    # r = ml.decode(str_pinyin)
+    r = ml.SpeechToText(str_pinyin)
+    print('语音转文字结果：\n', r)

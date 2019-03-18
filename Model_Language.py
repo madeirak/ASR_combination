@@ -53,7 +53,7 @@ class ModelLanguage(): # 语音模型类
 				# 否则不加入，然后直接将现有的拼音序列进行解码
 				str_decode = self.decode(str_tmp, 0.0000)
 				#print(str_decode)
-				#print('decode ',str_tmp,str_decode)
+				print('decode ',str_tmp,str_decode)
 				if(str_decode != []):
 					r += str_decode[0][0]
 
@@ -71,7 +71,7 @@ class ModelLanguage(): # 语音模型类
 
 		return r
 	
-	def decode(self,list_syllable, yuzhi = 0.0001):    #syllable 音节  list_syllable为需解码的一个pny或两个pny
+	def decode(self,list_syllable, yuzhi = 0.0001):    #syllable 音节  list_syllable为需解码的数个pny
 		'''
 		实现拼音向文本的转换
 		基于马尔可夫链
@@ -85,7 +85,7 @@ class ModelLanguage(): # 语音模型类
 		#print(num_pinyin)
 
 		# 开始语音解码
-		for i in range(num_pinyin): #遍历传入的pny列表 （num_pinyin = 1 或 2）
+		for i in range(num_pinyin): #遍历传入的pny列表
 			#print(i)
 			ls = ''
 			if(list_syllable[i] in self.dict_pinyin): # 如果这个拼音在拼音字典里的话
@@ -96,7 +96,7 @@ class ModelLanguage(): # 语音模型类
 				break
 			
 			
-			if(i == 0):  #如果解码的是两个pny中的第一个pny，或只传入了一个pny
+			if(i == 0):  #如果解码的是第一个pny
 				# 第一个字做初始处理
 				num_ls = len(ls)  #该pny同音异字个数
 				for j in range(num_ls): #遍历同音异字
@@ -116,18 +116,18 @@ class ModelLanguage(): # 语音模型类
 				list_words_2 = []
 				num_ls_word = len(list_words)    #当前list_words的长度
 				#print('ls_wd: ',list_words)
-				for j in range(0, num_ls_word):  #遍历之前预测的所有候选字
+				for j in range(0, num_ls_word):  #遍历之前预测的所有候选结果
 
 					num_ls = len(ls)		#第二个pny的同音异字字个数
 
 					for k in range(0, num_ls):	#遍历第二个候选同音异字字
 						#tuple_word = ['',0.0]
-						tuple_word = list(list_words[j]) # 把现有的第一个候选字取出来
+						tuple_word = list(list_words[j]) # 把之前的候选结果取出来
 						#print('tw1: ',tuple_word)
-						tuple_word[0] = tuple_word[0] + ls[k] # 将所有第一个候选字和第二个同音异字字组合
+						tuple_word[0] = tuple_word[0] + ls[k] # 将所有之前候选结果和此轮的同音异字字组合
 						#print('ls[k]  ',ls[k])
 
-						'''取最后两个字体现1-gram
+						'''取最后两个字体现1-gram，只考虑最后2个字概率
 					    此处tuple_word[0]存储的是当前短语和当前同音异字待定组合'''
 						tmp_words = tuple_word[0][-2:] #倒着取，一次在list中取2个字(1-gram)
 
@@ -152,9 +152,11 @@ class ModelLanguage(): # 语音模型类
 
 							'''list_word_2是大于阈值的两字词的临时存储列表'''
 							list_words_2.append(tuple_word)
+							print(tuple_word)
 
 				'''遍历完所有二字组合后留下的概率超过阈值的交付list_words存储'''
 				list_words = list_words_2
+				#print(list_words)
 				#print(list_words,'\n')
 		#print(list_words)
 
@@ -266,7 +268,7 @@ if (__name__ == '__main__'):
 	# str_pinyin = ['wo3','qu4','a4','mei2','shi4','er2','la1']
 	# str_pinyin = ['wo3', 'men5', 'qun2', 'li3', 'xiong1', 'di4', 'jian4', 'mei4', 'dou1', 'zai4', 'shuo1']
 	# str_pinyin = ['su1', 'an1', 'ni3', 'sui4', 'li4', 'yun4', 'sui2', 'cong2', 'jiao4', 'ming2', 'tao2', 'qi3', 'yu2', 'peng2', 'ya4', 'yang4', 'chao1', 'dao3', 'jiang1', 'li3', 'yuan2', 'kang1', 'zhua1', 'zou3']
-	# str_pinyin = ['da4', 'jia1', 'hao3']
+	#str_pinyin = ['da4', 'jia1', 'hao3']
 	str_pinyin = ['kao3', 'yan2', 'yan1', 'yu3', 'ci2', 'hui4']
 	# r = ml.decode(str_pinyin)
 	r = ml.SpeechToText(str_pinyin)
