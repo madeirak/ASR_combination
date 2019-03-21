@@ -8,7 +8,7 @@
 声学模型的输出是“kǎo yán yān yǔ cí huì”  时，因为“yān”会使连同之前的三个拼音的联合概率过低，造成丢弃，只输出“语词汇”，造成理解困难。
 修改后的1-gram会输出“ 考研烟语词汇 ”，不会造成词语的丢失。
 
+增加了transformer的中英翻译模型，把结果再翻译成英文，大杂烩:)
 
-
-[参考声学模型](https://github.com/audier/DeepSpeechRecognition)
-[参考语言模型](https://github.com/madeirak/ASRT_SpeechRecognition)
+[参考声学模型项目](https://github.com/audier/DeepSpeechRecognition)
+[参考语言模型项目](https://github.com/madeirak/ASRT_SpeechRecognition)
