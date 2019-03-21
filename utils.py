@@ -226,26 +226,32 @@ def compute_fbank(file):
 
 # word error rate------------------------------------
 def GetEditDistance(str1, str2):
-	leven_cost = 0
-	s = difflib.SequenceMatcher(None, str1, str2)
-	for tag, i1, i2, j1, j2 in s.get_opcodes():
-		if tag == 'replace':
-			leven_cost += max(i2-i1, j2-j1)
-		elif tag == 'insert':
-			leven_cost += (j2-j1)
-		elif tag == 'delete':
-			leven_cost += (i2-i1)
-	return leven_cost
+    leven_cost = 0
+    s = difflib.SequenceMatcher(None, str1, str2)
+    for tag, i1, i2, j1, j2 in s.get_opcodes():
+        if tag == 'replace':
+            leven_cost += max(i2-i1, j2-j1)
+        elif tag == 'insert':
+            leven_cost += (j2-j1)
+        elif tag == 'delete':
+            leven_cost += (i2-i1)
+    return leven_cost
 
 # 定义解码器------------------------------------
 def decode_ctc(num_result, num2word):
-	result = num_result[:, :, :]
-	in_len = np.zeros((1), dtype = np.int32)
-	in_len[0] = result.shape[1]
-	r = K.ctc_decode(result, in_len, greedy = True, beam_width=10, top_paths=1)
-	r1 = K.get_value(r[0][0])
-	r1 = r1[0]
-	text = []
-	for i in r1:
-		text.append(num2word[i])
-	return r1, text
+    result = num_result[:, :, :]
+    in_len = np.zeros((1), dtype = np.int32)
+    in_len[0] = result.shape[1]
+    #([<tf.Tensor 'SparseToDense:0' shape=(1, 13) dtype=int64>], <tf.Tensor 'CTCGreedyDecoder:3' shape=(1, 1) dtype=float32>)
+    r = K.ctc_decode(result, in_len, greedy = True, beam_width=10, top_paths=1)
+    #print('r:',r)
+    r2 = r[0]
+    #print('r2:',r2[:])
+    r1 = K.get_value(r[0][0])
+    #print('r1:', r1)
+    r1 = r1[0]
+    #print('r1[0]:', r1)
+    text = []
+    for i in r1:
+        text.append(num2word[i])
+    return r1, text

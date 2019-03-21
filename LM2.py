@@ -53,7 +53,7 @@ class ModelLanguage():  # 语音模型类
                 # 遇到某个低频词，不加入，然后直接将现有的拼音序列进行解码
                 str_decode = self.decode(str_tmp, 0.0000)
                 # print(str_decode)
-                print('decode ', str_tmp, str_decode)
+                #print('decode ', str_tmp, str_decode)
                 if (str_decode != []):
                     r += str_decode[0][0]
                 else:                    #若之前的词组总概率过小全被淘汰，返回空

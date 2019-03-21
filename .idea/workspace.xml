@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4b8129e-43d0-492f-a366-4d46de76a3e7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/LMM.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model_Language.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_Language.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/single_wav_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AM_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/AM_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LM2.py" beforeDir="false" afterPath="$PROJECT_DIR$/LM2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/single_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,55 +20,80 @@
     <SUITE FILE_PATH="coverage/ASR_combination$123.coverage" NAME="123 Coverage Results" MODIFIED="1552913125793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ASR_combination$LM.coverage" NAME="LM Coverage Results" MODIFIED="1552914666015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ASR_combination$LanguageModel.coverage" NAME="LanguageModel Coverage Results" MODIFIED="1552736025077" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ASR_combination$down_wav.coverage" NAME="down_wav Coverage Results" MODIFIED="1552818707543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ASR_combination$Model_Speech.coverage" NAME="Model_Speech Coverage Results" MODIFIED="1552906590716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ASR_combination$AM_test.coverage" NAME="AM_test Coverage Results" MODIFIED="1552906889193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ASR_combination$voice2hanzi_test.coverage" NAME="voice2hanzi_test Coverage Results" MODIFIED="1552907291374" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ASR_combination$test.coverage" NAME="test Coverage Results" MODIFIED="1552908005389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ASR_combination$Model_Language.coverage" NAME="Model_Language Coverage Results" MODIFIED="1552914394591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ASR_combination$single_test.coverage" NAME="single_test Coverage Results" MODIFIED="1552911789096" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ASR_combination$LMM.coverage" NAME="LMM Coverage Results" MODIFIED="1552915090418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ASR_combination$pytest_in_test_AM_py.coverage" NAME="pytest in test_AM.py Coverage Results" MODIFIED="1552906964794" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ASR_combination$LM2.coverage" NAME="LM2 Coverage Results" MODIFIED="1553136200207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ASR_combination$down_wav.coverage" NAME="down_wav Coverage Results" MODIFIED="1552818707543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ASR_combination$AM_test.coverage" NAME="AM_test Coverage Results" MODIFIED="1553135873108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ASR_combination$Model_Language.coverage" NAME="Model_Language Coverage Results" MODIFIED="1552914394591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ASR_combination$single_wav_test.coverage" NAME="single_wav_test Coverage Results" MODIFIED="1553153370439" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/down_wav.py">
+        <entry file="file://$PROJECT_DIR$/LM2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="5400">
+              <caret line="270" column="25" selection-start-line="270" selection-start-column="25" selection-end-line="270" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AM_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="580">
+              <caret line="59" selection-start-line="59" selection-end-line="59" />
               <folding>
-                <element signature="e#1#19#0" expanded="true" />
+                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="556">
+              <caret line="64" selection-start-line="64" selection-end-line="64" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/LM2.py">
+        <entry file="file://$PROJECT_DIR$/single_wav_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Model_Language.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2827">
-              <caret line="271" column="4" selection-start-line="271" selection-start-column="4" selection-end-line="271" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/single_test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="70" selection-start-line="70" selection-end-line="70" selection-end-column="22" />
+            <state relative-caret-position="320">
+              <caret line="106" selection-start-line="106" selection-end-line="106" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trans_CN2EN/testt_self.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#65#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trans_CN2EN/utils.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-840">
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -94,6 +124,9 @@
       <find>str_decode</find>
       <find>self.dict_pinyin</find>
       <find>vocab_size</find>
+      <find>print</find>
+      <find>Graph</find>
+      <find>encoder_vocab</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -105,24 +138,26 @@
         <option value="$PROJECT_DIR$/cnn_ctc.py" />
         <option value="$PROJECT_DIR$/LanguageModel.py" />
         <option value="$PROJECT_DIR$/SpeechModel.py" />
-        <option value="$PROJECT_DIR$/AM_test.py" />
         <option value="$PROJECT_DIR$/Model_Speech.py" />
-        <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/voice2hanzi_test.py" />
-        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/down_wav.py" />
         <option value="$PROJECT_DIR$/123.py" />
         <option value="$PROJECT_DIR$/Model_Language.py" />
         <option value="$PROJECT_DIR$/LM.py" />
         <option value="$PROJECT_DIR$/LMM.py" />
+        <option value="$PROJECT_DIR$/AM_test.py" />
+        <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/LM2.py" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/trans_CN2EN/testt_self.py" />
+        <option value="$PROJECT_DIR$/single_wav_test.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1250" />
-    <option name="width" value="675" />
-    <option name="height" value="1040" />
+    <option name="x" value="-8" />
+    <option name="width" value="977" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -136,6 +171,17 @@
             <path>
               <item name="ASR_combination" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="ASR_combination" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="trans_CN2EN" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ASR_combination" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="trans_CN2EN" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="model_self" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -163,8 +209,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.LMM">
-    <configuration name="123" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.single_wav_test">
+    <configuration name="AM_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ASR_combination" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -177,7 +223,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/123.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AM_test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -200,6 +246,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LM.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="LM2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ASR_combination" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LM2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -252,29 +320,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="down_wav" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="ASR_combination" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="G:\Anaconda3\envs\DeepSpeechRecognition\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/down_wav.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="single_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="single_wav_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ASR_combination" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -287,7 +333,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/single_test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/single_wav_test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -298,19 +344,19 @@
     </configuration>
     <list>
       <item itemvalue="Python.LM" />
-      <item itemvalue="Python.down_wav" />
-      <item itemvalue="Python.single_test" />
       <item itemvalue="Python.Model_Language" />
-      <item itemvalue="Python.123" />
       <item itemvalue="Python.LMM" />
+      <item itemvalue="Python.LM2" />
+      <item itemvalue="Python.AM_test" />
+      <item itemvalue="Python.single_wav_test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.single_wav_test" />
+        <item itemvalue="Python.LM2" />
+        <item itemvalue="Python.AM_test" />
         <item itemvalue="Python.LMM" />
         <item itemvalue="Python.Model_Language" />
-        <item itemvalue="Python.123" />
-        <item itemvalue="Python.single_test" />
-        <item itemvalue="Python.down_wav" />
       </list>
     </recent_temporary>
   </component>
@@ -333,7 +379,11 @@
       <workItem from="1552910535669" duration="139000" />
       <workItem from="1552910697586" duration="326000" />
       <workItem from="1552911064148" duration="629000" />
-      <workItem from="1552911714816" duration="3629000" />
+      <workItem from="1552911714816" duration="3666000" />
+      <workItem from="1552958634766" duration="804000" />
+      <workItem from="1553081261038" duration="19000" />
+      <workItem from="1553134785606" duration="1431000" />
+      <workItem from="1553151721813" duration="1756000" />
     </task>
     <servers />
   </component>
@@ -343,18 +393,17 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38393000" />
+    <option name="totallyTimeSpent" value="42440000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14343163" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12466488" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3045326" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.1898017" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -409,89 +458,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SpeechModel.py" />
     <entry file="file://$PROJECT_DIR$/LanguageModel.py" />
-    <entry file="file://$PROJECT_DIR$/AM_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="21" column="34" lean-forward="true" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model_Speech.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2320">
-          <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_AM.py" />
     <entry file="file://$PROJECT_DIR$/voice2hanzi_test.py" />
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="980">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dict.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/single_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="70" selection-start-line="70" selection-end-line="70" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model_Language.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2827">
-          <caret line="271" column="4" selection-start-line="271" selection-start-column="4" selection-end-line="271" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/123.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LM.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LMM.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="65" column="30" lean-forward="true" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/123.py" />
+    <entry file="file://$PROJECT_DIR$/LM.py" />
+    <entry file="file://$PROJECT_DIR$/LMM.py" />
     <entry file="file://$PROJECT_DIR$/down_wav.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
+        <state relative-caret-position="240">
           <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="e#1#19#0" expanded="true" />
@@ -499,10 +476,84 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/single_test.py" />
+    <entry file="file://$PROJECT_DIR$/Model_Speech.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model_Language.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="261" column="47" selection-start-line="261" selection-start-column="47" selection-end-line="261" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/LM2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+        <state relative-caret-position="5400">
+          <caret line="270" column="25" selection-start-line="270" selection-start-column="25" selection-end-line="270" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="244" column="5" selection-start-line="244" selection-start-column="5" selection-end-line="244" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AM_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trans_CN2EN/testt_self.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trans_CN2EN/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-840">
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single_wav_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="106" selection-start-line="106" selection-end-line="106" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

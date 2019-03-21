@@ -57,7 +57,11 @@ new_wav_data_lst[0, :wav_data_lst[0].shape[0], :, 0] = wav_data_lst[0]
 #new_wav_data_lst = tf.expand_dims(new_wav_data_lst, 0)#3d->4d
 
 result = am.model.predict(new_wav_data_lst, steps=1)#steps预测周期结束前的总步骤数(样品批次)，predict返回numpy数组类型的预测
+
 _, text = decode_ctc(result, train_data.am_vocab)  # num2pny
 #_, text = decode_ctc(result, train_data.am_vocab)  # num2pny
 text = ' '.join(text)  # 以空格为分隔符合将多元素列表text合并成一个字符串
 print('文本结果：', text)
+
+if (__name__ == '__main__'):
+    pass
