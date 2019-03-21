@@ -53,7 +53,7 @@ class ModelLanguage(): # 语音模型类
 				# 否则不加入，然后直接将现有的拼音序列进行解码
 				str_decode = self.decode(str_tmp, 0.0000)
 				#print(str_decode)
-				print('decode ',str_tmp,str_decode)
+				#print('decode ',str_tmp,str_decode)
 				if(str_decode != []):
 					r += str_decode[0][0]
 
@@ -152,7 +152,7 @@ class ModelLanguage(): # 语音模型类
 
 							'''list_word_2是大于阈值的两字词的临时存储列表'''
 							list_words_2.append(tuple_word)
-							print(tuple_word)
+							#print(tuple_word)
 
 				'''遍历完所有二字组合后留下的概率超过阈值的交付list_words存储'''
 				list_words = list_words_2

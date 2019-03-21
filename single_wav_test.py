@@ -54,6 +54,7 @@ with open('trans_CN2EN/self.txt', 'r', encoding='utf-8-sig') as f:
     #print('分词后：', inputs[:10])
     #print('分词后：', outputs[:10])
 encoder_vocab,decoder_vocab = make_vocab(inputs,outputs)
+print('trans_vocab made.')
 arg.input_vocab_size = len(encoder_vocab)
 arg.label_vocab_size = len(decoder_vocab)
 
@@ -91,7 +92,8 @@ result = am.model.predict(new_wav_data_lst, steps=1)#steps预测周期结束前�
 
 _, text = decode_ctc(result, train_data.am_vocab)  # num2pny
 text = ' '.join(text)  # 以空格为分隔符合将多元素列表text合并成一个字符串
-print('拼音结果：', text)
+pny_result = text
+#print('拼音结果：', pny_result)
 
 
 #5.测试语言模型------------------------------------
@@ -101,16 +103,14 @@ text = text.split(' ')
 #print(text)
 str_pinyin = text
 r = ml.SpeechToText(str_pinyin)
-print('文字结果：', r)
+hanzi_result = r
+#print('文字结果：', hanzi_result)
 
 #5.翻译模型测试----------------------
+g = Graph(arg)
 saver =tf.train.Saver()
 with tf.Session() as sess:
-    latest = tf.train.latest_checkpoint('trans_CN2EN/model_self')  # 查找最新保存的检查点文件的文件名，latest_checkpoint(checkpoint_dir)
-    saver.restore(sess, latest)  # restore(sess,save_path)，需要启动图表的会话。
-    # 该save_path参数通常是先前从save()调用或调用返回的值latest_checkpoint()
-
-
+    saver.restore(sess, 'model_trans/model_self_60')  # restore(sess,save_path)，需要启动图表的会话。
 
     line = r
     #print(line[-1])
@@ -134,4 +134,9 @@ with tf.Session() as sess:
             break
         de_inp[0].append(preds[0][-1])
     got = ' '.join(decoder_vocab[idx] for idx in de_inp[0][1:])
-    print('英文结果:',got)
+
+
+
+print('拼音结果：', pny_result)
+print('文字结果：', hanzi_result)
+print('英文结果：',got)

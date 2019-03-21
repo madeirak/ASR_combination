@@ -48,7 +48,7 @@ class Am():#通过对 tf.keras.Model 进行子类化并定义您自己的前向�
         self.h7 = Dropout(0.2)(self.h7)
         self.outputs = dense(self.MS_OUTPUT_SIZE, activation='softmax')(self.h7)
         self.model = Model(inputs=self.inputs, outputs=self.outputs)#实例化上述自定义模型
-        self.model.summary()
+        #self.model.summary()
 
     def _ctc_init(self):#计算ctc损失的模型自定义
         self.labels = Input(name='the_labels', shape=[None], dtype='float32')
