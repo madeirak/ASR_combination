@@ -22,7 +22,7 @@ print('loading acoustic model...')
 am.ctc_model.load_weights('model_speech/model_self.h5')#从检查点恢复权重数据
 
 #2.语言模型------------------------------------
-from Model_Language import ModelLanguage
+from LM2 import ModelLanguage
 
 ml = ModelLanguage('model_language')
 ml.LoadModel()

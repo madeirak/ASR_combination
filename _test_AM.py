@@ -26,7 +26,7 @@ am_args = am_hparams()
 am_args.vocab_size = len(train_data.am_vocab)
 am = Am(am_args)
 print('loading acoustic model...')
-am.ctc_model.load_weights('G:/ASR_combination/model_speech/model_self.h5')#从绝对路径的检查点恢复权重数据
+am.ctc_model.load_weights('model_speech/model_self.h5')#从绝对路径的检查点恢复权重数据
 
 
 import matplotlib.pyplot as plt

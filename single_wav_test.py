@@ -1,3 +1,11 @@
+
+"""
+single wav test
+wav 2 hanzi 2 EN
+"""
+
+
+
 import numpy as np
 import scipy.io.wavfile as wav
 from utils import decode_ctc,compute_fbank
@@ -25,7 +33,7 @@ print('loading acoustic model...')
 am.ctc_model.load_weights('G:/ASR_combination/model_speech/' + speech_model_name)#从绝对路径的检查点恢复权重数据
 
 #2.语言模型------------------------------------
-from Model_Language import ModelLanguage
+from LM2 import ModelLanguage
 
 ml = ModelLanguage('model_language')
 ml.LoadModel()
@@ -110,7 +118,7 @@ hanzi_result = r
 g = Graph(arg)
 saver =tf.train.Saver()
 with tf.Session() as sess:
-    saver.restore(sess, 'model_trans/model_self_60')  # restore(sess,save_path)，需要启动图表的会话。
+    saver.restore(sess, 'model_trans/model_self_30')  # restore(sess,save_path)，需要启动图表的会话。
 
     line = r
     #print(line[-1])
@@ -139,4 +147,4 @@ with tf.Session() as sess:
 
 print('拼音结果：', pny_result)
 print('文字结果：', hanzi_result)
-print('英文结果：',got)
+print('英文结果：', got)

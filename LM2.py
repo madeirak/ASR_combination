@@ -19,7 +19,7 @@ class ModelLanguage():  # 语音模型类
         pass
 
     def LoadModel(self):
-        self.dict_pinyin = self.GetSymbolDict('dict.txt')  # dict_pinyin---pny2word
+        self.dict_pinyin = self.GetSymbolDict('model_language/dict.txt')  # dict_pinyin---pny2word
         self.model1 = self.GetLanguageModel(self.modelpath + 'language_model1.txt')  # 读取单字词词频统计文件，返回字典类型
         self.model2 = self.GetLanguageModel(self.modelpath + 'language_model2.txt')  # 读取双字词词频统计文件，返回字典类型
         self.pinyin = self.GetPinyin(self.modelpath + 'dic_pinyin.txt')
