@@ -1,5 +1,5 @@
 import tensorflow as tf
-
+#[N,T]  =  [batch_size,max_length]
 
 
 def normalize(inputs,
@@ -318,7 +318,7 @@ def label_smoothing(inputs, epsilon=0.1):  # 对于训练有好处，将0变为�
 class Graph():
     def __init__(self,arg):
         tf.reset_default_graph()  # as_default()，将此图作为运行环境的默认图
-        self.is_training = arg.is_training  # is_training: Boolean. Controller of mechanism for dropout.#dropout的控制机关
+        self.is_training = arg.is_training  # is_training: Boolean. Controller 开关
         self.hidden_units = arg.hidden_units
         self.input_vocab_size = arg.input_vocab_size
         self.label_vocab_size = arg.label_vocab_size
@@ -329,7 +329,7 @@ class Graph():
         self.dropout_rate = arg.dropout_rate
 
         # input
-        self.x = tf.placeholder(tf.int32, shape=(None, None))  # （图的输入）
+        self.x = tf.placeholder(tf.int32, shape=(None, None))  # （图的输入）shape = [N,T].
         self.y = tf.placeholder(tf.int32, shape=(None, None))
         self.de_inp = tf.placeholder(tf.int32, shape=(None, None))
 
@@ -341,18 +341,17 @@ class Graph():
             self.en_emb = embedding(self.x, vocab_size=self.input_vocab_size, num_units=self.hidden_units, scale=True,
                                  scope="enc_embed")  # [N,T,hidden_units]
 
-            # Positional Encoding 仍使用embedding函数，只改变前两个参数
-            # 一共有 maxlen 种这样的位置id,利用了tf.range 实现,最后扩展到了 batch 中的所有句子,因为每个句子中词的位置id都是一样的 self.x三维分别是batch_num，maxlen和embedding_size
+            # Positional Encoding 仍使用embedding函数，只改变前两个参数,第二个维度的值是该词的位置id,
+            # 一共有 maxlen（T）种这样的位置id,利用了tf.range 实现,最后扩展到了 batch 中的所有句子,
+            # 因为每个句子中词的位置id都是一样的 self.x三维分别是（batch_size,maxlen,embedding_size）
             self.enc = self.en_emb + embedding(
                 tf.tile(tf.expand_dims(tf.range(tf.shape(self.x)[1]), 0), [tf.shape(self.x)[0], 1]),
                 vocab_size=self.max_length, num_units=self.hidden_units, zero_pad=False, scale=False,
                 scope="enc_pe")  # [N,T,hidden_units]
             # tf.range（x）创建0到x的序列
-            # tf.tile()扩展张量tf.tile(input, multiples）
-            # multiples是一个一维张量
-            # 表示将input的每个维度重复几次
+            # tf.tile()扩展张量tf.tile(input, multiples）multiples是一个一维张量,表示将input的每个维度重复几次
 
-            ## Dropout
+            # Dropout  training 在训练模式(应用dropout)中返回输出，还是在推理模式(返回未修改的输入)中返回输出
             self.enc = tf.layers.dropout(self.enc,
                                          rate=self.dropout_rate,
                                          training=tf.convert_to_tensor(self.is_training))
@@ -361,7 +360,7 @@ class Graph():
             # 将输入送到block单元中进行操作，默认为6个这样的block结构。所以代码循环6次。其中每个block都调用了依次multihead_attention以及feedforward函数
             for i in range(self.num_blocks):
                 with tf.variable_scope("num_blocks_{}".format(i)):  # 黄色{}是占位符，输出时，i会被填入{}
-                    ### Multihead Attention
+                    ### Multihead self Attention
                     self.enc = multihead_attention(key_emb = self.en_emb,
                                                    que_emb = self.en_emb,
                                                    queries=self.enc,  # self_attention
@@ -372,8 +371,8 @@ class Graph():
                                                    is_training=self.is_training,
                                                    causality=False)
 
-            ### Feed Forward
-            self.enc = feedforward(self.enc, num_units=[4 * self.hidden_units, self.hidden_units])
+                    ### Feed Forward
+                    self.enc = feedforward(self.enc, num_units=[4 * self.hidden_units, self.hidden_units])
 
 
 
@@ -392,10 +391,10 @@ class Graph():
                                          rate=self.dropout_rate,
                                          training=tf.convert_to_tensor(self.is_training))
 
-            ## Multihead Attention ( self-attention)
+            ## Multihead Attention (self-attention)
             for i in range(self.num_blocks):
                 with tf.variable_scope("num_blocks_{}".format(i)):
-                    ### Multihead Attention
+                    ### Multihead Attention（self attention）
                     self.dec = multihead_attention(key_emb=self.de_emb,
                                                    que_emb=self.de_emb,
                                                    queries=self.dec,
@@ -407,10 +406,7 @@ class Graph():
                                                    causality=True,
                                                    scope='self_attention')
 
-            ## Multihead Attention ( vanilla attention)
-            for i in range(self.num_blocks):
-                with tf.variable_scope("num_blocks_{}".format(i)):
-                    ### Multihead Attention
+                    ### Multihead Attention (vanilla attention)
                     self.dec = multihead_attention(key_emb=self.en_emb,
                                                    que_emb=self.de_emb,
                                                    queries=self.dec,
@@ -422,16 +418,8 @@ class Graph():
                                                    causality=True,
                                                    scope='vanilla_attention')
 
-                    ### Feed Forward
-            self.outputs = feedforward(self.dec, num_units=[4 * self.hidden_units, self.hidden_units])
-
-        # Final linear projection
-        self.logits = tf.layers.dense(self.outputs, self.label_vocab_size)
-        self.preds = tf.to_int32(tf.argmax(self.logits, axis=-1))
-        self.istarget = tf.to_float(tf.not_equal(self.y, 0))
-        self.acc = tf.reduce_sum(tf.to_float(tf.equal(self.preds, self.y)) * self.istarget) / (
-            tf.reduce_sum(self.istarget))
-        tf.summary.scalar('acc', self.acc)
+                        ### Feed Forward
+                    self.outputs = feedforward(self.dec, num_units=[4 * self.hidden_units, self.hidden_units])
 
 
 
@@ -440,8 +428,8 @@ class Graph():
         self.logits = tf.layers.dense(self.outputs, self.label_vocab_size)  # logits，尚未被softmax归一化的对数概率，可作为softmax输入
         self.preds = tf.to_int32(
             tf.argmax(self.logits, axis=-1))  # [N,T]   tf.argmax它能给出某个tensor对象在某一维上的其数据最大值所在的索引值
-        self.istarget = tf.to_float(tf.not_equal(self.y, 0))  # not_equal返回bool类型张量，保证y不等于0
-        # 把label（即self.y）中所有id不为0（即是真实的word，不是pad）的位置的值用float型的1.0代替
+        self.istarget = tf.to_float(tf.not_equal(self.y, 0))
+        # 把label（即self.y）中所有id不为0（即是真实的word，不是pad）的位置的值用float型的1.0代替,to_float把True转成‘1.’，False转成‘0.’
 
         self.acc = tf.reduce_sum(tf.to_float(tf.equal(self.preds, self.y)) * self.istarget) / (
             tf.reduce_sum(self.istarget))
@@ -455,15 +443,19 @@ class Graph():
         if self.is_training:
             # Loss
             self.y_smoothed = label_smoothing(tf.one_hot(self.y, depth=self.label_vocab_size))  # tf.one_hot生成独热向量
-            # self.y最内层每个元素替换成一个one-hot
+            # self.y最内层每个元素替换成一个one-hot，self.y是label
             # one-hot中由self.y索引表示的位置取值1,而所有其他位置都取值0
             # one_hot()返回3维张量（batch，features，depth）
             # https://www.w3cschool.cn/tensorflow_python/tensorflow_python-fh1b2fsm.html
+
+
             self.loss = tf.nn.softmax_cross_entropy_with_logits_v2(logits=self.logits,
                                                                    labels=self.y_smoothed)  # [N,T]  entropy熵
+
             self.mean_loss = tf.reduce_sum(self.loss * self.istarget) / (tf.reduce_sum(self.istarget))
             # loss中有那些pad部分的无效词的loss
-            # self.loss*self.istarget去掉无效的loss就是真正需要的loss
+            #mean_loss 一个batch的mean_loss
+
 
             # Training Scheme
             self.global_step = tf.Variable(0, name='global_step',
