@@ -5,7 +5,7 @@ import tensorflow as tf
 import scipy.io.wavfile as wav
 from tqdm import tqdm
 from scipy.fftpack import fft
-from python_speech_features import mfcc
+#from python_speech_features import mfcc
 from random import shuffle
 from keras import backend as K
 
@@ -191,7 +191,7 @@ class get_data():
                 add_len += 1
         return label_len + add_len
 
-
+'''
 # 对音频文件提取mfcc特征
 def compute_mfcc(file):
     fs, audio = wav.read(file)
@@ -199,7 +199,7 @@ def compute_mfcc(file):
     mfcc_feat = mfcc_feat[::3]
     mfcc_feat = np.transpose(mfcc_feat)
     return mfcc_feat
-
+'''
 
 # 获取信号的时频图
 def compute_fbank(file):
