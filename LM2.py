@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-相比原先的1-gram，解决超低频词（如声学模型解码失误）的处理问题
+相比原先的2-gram，解决超低频词（如声学模型解码失误）的处理问题
 
 基于马尔可夫模型的语言模型
 
@@ -45,7 +45,7 @@ class ModelLanguage():  # 语音模型类
             str_split = list_syllable[i] + ' ' + list_syllable[i + 1]
             # print(str_split,str_tmp,r)
 
-            '''1-gram'''
+            '''2-gram'''
             if (str_split in self.pinyin):  # 如果这拼音组在汉语拼音状态转移字典里的话(dic_pinyin.txt)
                 # 将第二个字的拼音加入
                 str_tmp.append(list_syllable[i + 1])
@@ -132,7 +132,7 @@ class ModelLanguage():  # 语音模型类
                         tuple_word[0] = tuple_word[0] + ls[k]  # 将所有第一个候选字和第二个同音异字字组合
                         # print('ls[k]  ',ls[k])
 
-                        '''取最后两个字体现1-gram
+                        '''取最后两个字体现2-gram
                         此处tuple_word[0]存储的是当前短语和当前同音异字待定组合'''
                         tmp_words = tuple_word[0][-2:]  # 倒着取，一次在list中取2个字(1-gram)
 
@@ -141,7 +141,7 @@ class ModelLanguage():  # 语音模型类
                         if (tmp_words in self.model2):  # 判断它们是不是在状态转移表里(language_model2.txt)
                             # print(tmp_words,tmp_words in self.model2)
 
-                            '''1-gram核心！在当前概率上乘转移概率，公式化简后为第n-1和n个字出现的次数除以第n-1个字出现的次数
+                            '''2-gram核心！在当前概率上乘转移概率，公式化简后为第n-1和n个字出现的次数除以第n-1个字出现的次数
                             此处tuple_word[1]存储的概率是当前2个候选汉字的联合概率'''
                             tuple_word[1] = tuple_word[1] * float(self.model2[tmp_words]) / float(
                                 self.model1[tmp_words[-2]])
